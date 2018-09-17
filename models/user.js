@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
     minlength: 1,
     maxlength: 99
     },
-  email: { // TODO: Need to add email validation
+  email: {
     type: String,
     lowercase: true,
     required: true,
@@ -34,7 +34,8 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 6,
     maxlength: 99
-  }
+  },
+  spendingCategory: categorySchema
 });
 
 // Override 'toJSON' to prevent the password from being returned with the user

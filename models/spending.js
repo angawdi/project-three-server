@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 // Create Museum Schema
 const spendingSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   month: String,
   category: String,
   amount: Number,

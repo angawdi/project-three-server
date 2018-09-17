@@ -32,6 +32,9 @@ function fromRequest(req){
 // All auth routes are protected except for POST to /auth/login and POST /auth/signup
 // Remember to pass the JWT_SECRET (it will break without it)
 // NOTE: The unless portion is only needed if you need exceptions
+
+app.use('/users', require('./controllers/users'));
+
 app.use('/auth', expressJWT({
   secret: process.env.JWT_SECRET,
   getToken: fromRequest
