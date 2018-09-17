@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/kelseyhg/project-three-server/issues"
   },
-  "homepage": "https://github.com/kelseyhg/project-three-server#readme"
+  "homepage": "https://github.com/kelseyhg/project-three-server#readme",
+  "dependencies": {
+    "jsonwebtoken": "^8.3.0"
+  }
 }
