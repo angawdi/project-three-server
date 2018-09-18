@@ -3,9 +3,9 @@ const router = express.Router();
 const db = require('../models');
 
 router.get('/all', (req, res) => {
-  db.Spending.find({spendingCategory: 'income'})
+  db.Spending.find({category: 'income'})
   .then(spendings => {
-      res.send(spendings);
+      res.send(Math.abs(spendings));
   })
   .catch(err => {
     console.log(err);
