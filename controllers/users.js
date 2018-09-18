@@ -20,7 +20,6 @@ router.get('/createuser', (req, res) => {
     lastName: req.body.lastName,
     email: req.body.email,
     password: req.body.password,
-    userid: req.body.id
   })
   .then(result => {
     res.send('success');

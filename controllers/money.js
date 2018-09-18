@@ -4,7 +4,7 @@ const db = require('../models');
 
 
 router.get('/all', (req, res) => {
-  db.Spending.find({spendingCategory: 'income'})
+  db.Spending.find({category: 'income'})
   .then(spendings => {
       res.send(spendings);
   })
@@ -15,12 +15,13 @@ router.get('/all', (req, res) => {
 });
 
 
-router.post('/add', (req, res) => {
+router.post('/all', (req, res) => {
   db.Spending.create({
     date: req.body.date,
     category: 'income',
-    amount: -Math.abs(req.body.amount),
-    description: req.body.description
+    amount: req.body.amount,
+    description: req.body.description,
+    userId: req.body.userId
   })
   .then(result => {
     res.send('success');

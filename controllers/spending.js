@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
     amount: req.body.amount,
     description: req.body.description,
     category: req.body.category,
-    userId: req.body.userid
+    userId: req.body.userId
   })
   .then(result => {
     res.send('success');
