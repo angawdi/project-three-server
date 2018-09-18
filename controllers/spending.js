@@ -15,11 +15,13 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   db.Spending.create({
+
     date: req.body.date,
     amount: req.body.amount,
     description: req.body.description,
     category: req.body.category,
     userId: req.body.userId
+
   })
   .then(result => {
     res.send('success');

@@ -37,6 +37,8 @@ app.use('/users', require('./controllers/users'));
 app.use('/spending', require('./controllers/spending'));
 app.use('/money', require('./controllers/money'));
 app.use('/budget', require('./controllers/budget'));
+
+
 app.use('/auth', expressJWT({
   secret: process.env.JWT_SECRET,
   getToken: fromRequest
