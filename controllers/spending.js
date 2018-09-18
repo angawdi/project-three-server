@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   db.Spending.create({
+    userId: req.params.userid,
     date: req.body.date,
     category: req.body.category,
     amount: req.body.amount,
@@ -42,8 +43,9 @@ router.get('/allmoney', (req, res) => {
 
 router.get('/addmoney', (req, res) => {
   db.Spending.create({
+    userId: req.params.userid,
     date: req.body.date,
-    category: req.body.category,
+    category: 'income',
     amount: -Math.abs(req.body.amount),
     description: req.body.description
   })
