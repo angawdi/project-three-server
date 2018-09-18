@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models');
 
-router.get('/', (req, res) => {
-  db.Spending.find()
+router.get('/all', (req, res) => {
+  db.Spending.find({spendingCategory: 'income'})
   .then(spendings => {
       res.send(spendings);
   })
@@ -13,12 +13,12 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/', (req, res) => {
+router.post('/add', (req, res) => {
   db.Spending.create({
     userId: req.params.userid,
     date: req.body.date,
-    category: req.body.category,
-    amount: req.body.amount,
+    category: 'income',
+    amount: -Math.abs(req.body.amount),
     description: req.body.description
   })
   .then(result => {
