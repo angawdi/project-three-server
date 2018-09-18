@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models');
 
-router.get('/', (req, res) => {
-  db.Spending.find()
+
+router.get('/all', (req, res) => {
+  db.Spending.find({spendingCategory: 'income'})
   .then(spendings => {
       res.send(spendings);
   })
@@ -13,13 +14,13 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/', (req, res) => {
+
+router.post('/add', (req, res) => {
   db.Spending.create({
     date: req.body.date,
-    amount: req.body.amount,
-    description: req.body.description,
-    category: req.body.category,
-    userId: req.body.userid
+    category: 'income',
+    amount: -Math.abs(req.body.amount),
+    description: req.body.description
   })
   .then(result => {
     res.send('success');
@@ -29,6 +30,5 @@ router.post('/', (req, res) => {
     res.send('error, check your logs');
   });
 });
-
 
 module.exports = router;
