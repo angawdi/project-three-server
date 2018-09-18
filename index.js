@@ -34,6 +34,7 @@ function fromRequest(req){
 // NOTE: The unless portion is only needed if you need exceptions
 
 app.use('/users', require('./controllers/users'));
+app.use('/spending', require('./controllers/spending'));
 
 app.use('/auth', expressJWT({
   secret: process.env.JWT_SECRET,

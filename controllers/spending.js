@@ -13,12 +13,11 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/addexpense', (req, res) => {
+router.post('/', (req, res) => {
   db.Spending.create({
-    month: 'may',
-    category: 'housing',
-    amount: 5000,
-    description: 'boughtanewhouse'
+    date: req.body.date,
+    amount: req.body.amount,
+    description: req.body.description  
   })
   .then(result => {
     res.send('success');
