@@ -13,12 +13,39 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/addexpense', (req, res) => {
+router.post('/', (req, res) => {
   db.Spending.create({
-    month: 'may',
-    category: 'housing',
-    amount: 5000,
-    description: 'boughtanewhouse'
+    date: req.body.date,
+    category: req.body.category,
+    amount: req.body.amount,
+    description: req.body.description
+  })
+  .then(result => {
+    res.send('success');
+  })
+  .catch(err => {
+    console.log(err);
+    res.send('error, check your logs');
+  });
+});
+
+router.get('/allmoney', (req, res) => {
+  db.Spending.find({spendingCategory: 'income'})
+  .then(spendings => {
+      res.send(spendings);
+  })
+  .catch(err => {
+    console.log(err);
+    res.send(err);
+  });
+});
+
+router.get('/addmoney', (req, res) => {
+  db.Spending.create({
+    date: req.body.date,
+    category: req.body.category,
+    amount: -Math.abs(req.body.amount),
+    description: req.body.description
   })
   .then(result => {
     res.send('success');
