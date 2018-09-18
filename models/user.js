@@ -1,10 +1,18 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const categorySchema = new mongoose.Schema({
-  name: String,
-  budgetAmount: Number
-});
+// const categorySchema = new mongoose.Schema({
+//   name: String,
+//   budgetAmount: Number
+// });
+
+const spendingCategorySchema = {
+      housingBudget: String,
+      foodBudget: String,
+      transportationBudget: String,
+      entertainmentBudget: String,
+      shoppingBudget: String
+ }
 
 const userSchema = new mongoose.Schema({
   firstName: {
@@ -35,7 +43,8 @@ const userSchema = new mongoose.Schema({
     minlength: 6,
     maxlength: 99
   },
-  spendingCategory: categorySchema
+  // spendingCategory: [categorySchema]
+    spendingCategory: spendingCategorySchema
 });
 
 // Override 'toJSON' to prevent the password from being returned with the user

@@ -2,10 +2,13 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models');
 
+
+
 router.get('/all', (req, res) => {
   db.Spending.find({category: 'income'})
   .then(spendings => {
-      res.send(Math.abs(spendings));
+      res.send(spendings);
+
   })
   .catch(err => {
     console.log(err);
@@ -13,13 +16,16 @@ router.get('/all', (req, res) => {
   });
 });
 
-router.post('/add', (req, res) => {
+
+
+router.post('/all', (req, res) => {
   db.Spending.create({
-    userId: req.params.userid,
     date: req.body.date,
     category: 'income',
-    amount: -Math.abs(req.body.amount),
-    description: req.body.description
+    amount: req.body.amount,
+    description: req.body.description,
+    userId: req.body.userId
+
   })
   .then(result => {
     res.send('success');

@@ -15,11 +15,13 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   db.Spending.create({
-    userId: req.params.userid,
+
     date: req.body.date,
-    category: req.body.category,
     amount: req.body.amount,
-    description: req.body.description
+    description: req.body.description,
+    category: req.body.category,
+    userId: req.body.userId
+
   })
   .then(result => {
     res.send('success');
@@ -29,5 +31,6 @@ router.post('/', (req, res) => {
     res.send('error, check your logs');
   });
 });
+
 
 module.exports = router;
