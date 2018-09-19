@@ -5,7 +5,9 @@ const db = require('../models');
 
 
 router.get('/all', (req, res) => {
-  db.Spending.find({category: 'income'})
+  db.Spending.find({
+    'category': 'income'
+  })
   .then(spendings => {
       res.send(spendings);
 
