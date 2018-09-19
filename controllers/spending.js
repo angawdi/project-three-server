@@ -3,9 +3,9 @@ const router = express.Router();
 const db = require('../models');
 
 router.get('/', (req, res) => {
-  db.Spending.find({
-    "category": {"$ne": "income"}
-  })
+  db.Spending.find(
+  {  "category": {"$ne": "income"}}
+  )
   .then(spendings => {
       console.log(spendings);
       res.send(spendings);
