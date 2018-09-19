@@ -6,6 +6,7 @@ const expressJWT = require('express-jwt');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const path = require('path');
+const moment = require('moment');
 
 // App instance
 const app = express();

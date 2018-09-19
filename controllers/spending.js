@@ -16,6 +16,7 @@ router.get('/', (req, res) => {
   });
 });
 
+
 router.post('/', (req, res) => {
   console.log('adding spending!', req.body)
   db.Spending.create({
