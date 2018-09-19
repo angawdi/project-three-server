@@ -31,7 +31,7 @@ router.post('/', (req, res) => {
   .catch(err => {
     console.log(err);
 
-    
+
     res.send('error, check your logs');
   });
 });
