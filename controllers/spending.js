@@ -3,8 +3,11 @@ const router = express.Router();
 const db = require('../models');
 
 router.get('/', (req, res) => {
-  db.Spending.find()
+  db.Spending.find({
+    "category": {"$ne": "income"}
+  })
   .then(spendings => {
+      console.log(spendings);
       res.send(spendings);
   })
   .catch(err => {
@@ -14,6 +17,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+  console.log('adding spending!', req.body)
   db.Spending.create({
     date: req.body.date,
     amount: req.body.amount,
