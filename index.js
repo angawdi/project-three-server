@@ -32,13 +32,6 @@ function fromRequest(req){
 // All auth routes are protected except for POST to /auth/login and POST /auth/signup
 // Remember to pass the JWT_SECRET (it will break without it)
 // NOTE: The unless portion is only needed if you need exceptions
-
-app.use('/users', require('./controllers/users'));
-app.use('/spending', require('./controllers/spending'));
-app.use('/money', require('./controllers/money'));
-app.use('/budget', require('./controllers/budget'));
-
-
 app.use('/auth', expressJWT({
   secret: process.env.JWT_SECRET,
   getToken: fromRequest
@@ -48,6 +41,14 @@ app.use('/auth', expressJWT({
     { url: '/auth/signup', methods: ['POST'] }
   ]
 }), require('./controllers/auth'));
+
+app.use('/users', require('./controllers/users'));
+app.use('/spending', require('./controllers/spending'));
+app.use('/money', require('./controllers/money'));
+app.use('/budget', require('./controllers/budget'));
+app.use('/profile', require('./controllers/profile'));
+
+
 
 // This is the catch all route. ideally you dont get here unless you made a mistake on your frontend
 app.get('*', function(req, res, next) {
