@@ -43,7 +43,6 @@ const userSchema = new mongoose.Schema({
     minlength: 6,
     maxlength: 99
   },
-  // spendingCategory: [categorySchema]
     spendingCategory: spendingCategorySchema
 });
 
