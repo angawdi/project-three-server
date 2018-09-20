@@ -2,10 +2,12 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models');
 
-router.get('/', (req, res) => {
-  db.Spending.find(
-  {  "category": {"$ne": "income"}}
-  )
+
+router.post('/post', (req, res) => {
+  console.log('req.body=====', req.body)
+  db.Spending.find({ 'userId': req.body.id,
+    "category": {"$ne": "income"}
+  })
   .then(spendings => {
       console.log(spendings);
       res.send(spendings);
@@ -15,6 +17,7 @@ router.get('/', (req, res) => {
     res.send(err);
   });
 });
+
 
 router.post('/', (req, res) => {
   console.log('adding spending!', req.body)
