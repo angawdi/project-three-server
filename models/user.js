@@ -11,7 +11,8 @@ const spendingCategorySchema = {
       foodBudget: String,
       transportationBudget: String,
       entertainmentBudget: String,
-      shoppingBudget: String
+      shoppingBudget: String,
+      savingsBudget: String
  }
 
 const userSchema = new mongoose.Schema({

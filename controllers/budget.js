@@ -22,11 +22,13 @@ router.post('/', (req, res) => {
         foodBudget: req.body.foodBudget,
         transportationBudget: req.body.transportationBudget,
         entertainmentBudget: req.body.entertainmentBudget,
-        shoppingBudget: req.body.shoppingBudget
+        shoppingBudget: req.body.shoppingBudget,
+        savingsBudget: req.body.savingsBudget
     }
   })
   .then(result => {
     res.send('success');
+    console.log(req.body);
   })
   .catch(err => {
     console.log(err);
