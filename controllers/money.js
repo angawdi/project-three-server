@@ -16,10 +16,11 @@ const db = require('../models');
 //     res.send(err);
 //   });
 // });
+// findById(req.user.id)
 
 router.post('/all/post', (req, res) => {
   console.log('req.body=====', req.body)
-  db.Spending.find({ 'userId': req.body.id,
+  db.Spending.find({ 'userId': req.user.id,
     "category": "income"
   })
   .then(spendings => {
@@ -35,6 +36,9 @@ router.post('/all/post', (req, res) => {
 
 
 router.post('/all', (req, res) => {
+  console.log('adding spending!', req.body)
+  console.log('USER', req.user)
+
   db.Spending.create({
     date: req.body.date,
     category: 'income',
