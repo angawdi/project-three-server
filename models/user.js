@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema({
     minlength: 6,
     maxlength: 99
   },
-    spendingCategory: spendingCategorySchema
+  spendingCategory: spendingCategorySchema
 });
 
 // Override 'toJSON' to prevent the password from being returned with the user

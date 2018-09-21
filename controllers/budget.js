@@ -3,10 +3,12 @@ const router = express.Router();
 const db = require('../models');
 
 
-router.get('/', (req, res) => {
-  db.User.find()
+router.post('/', (req, res) => {
+  console.log('USER', req.user)
+  db.User.findById(req.user.id)
   .then(budget => {
-   res.send(budget[0].spendingCategory);
+    console.log('hello ===> budget', budget)
+   res.send(budget.spendingCategory);
   })
   .catch(err => {
     console.log(err);
@@ -14,26 +16,17 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/', (req, res) => {
-
-  db.User.findOneAndUpdate({_id: req.body.userId}, {spendingCategory:
-      {
-        housingBudget: req.body.housingBudget,
-        foodBudget: req.body.foodBudget,
-        transportationBudget: req.body.transportationBudget,
-        entertainmentBudget: req.body.entertainmentBudget,
-        shoppingBudget: req.body.shoppingBudget,
-        savingsBudget: req.body.savingsBudget
-    }
-  })
+router.post('/update', (req, res) => {
+  req.body = req.body.body
+  console.log('BODY:', req.body);
+  console.log('USER', req.user)
+  db.User.findOneAndUpdate({_id: req.user.id}, {spendingCategory: req.body})
   .then(result => {
+    console.log('RESULT', result)
     res.send('success');
-    console.log(req.body);
   })
   .catch(err => {
     console.log(err);
-
-
     res.send('error, check your logs');
   });
 });

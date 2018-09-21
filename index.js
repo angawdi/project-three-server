@@ -44,9 +44,15 @@ app.use('/auth', expressJWT({
 }), require('./controllers/auth'));
 
 app.use('/users', require('./controllers/users'));
-app.use('/spending', require('./controllers/spending'));
+app.use('/spending', expressJWT({
+  secret: process.env.JWT_SECRET,
+  getToken: fromRequest
+}), require('./controllers/spending'));
 app.use('/money', require('./controllers/money'));
-app.use('/budget', require('./controllers/budget'));
+app.use('/budget', expressJWT({
+  secret: process.env.JWT_SECRET,
+  getToken: fromRequest
+}), require('./controllers/budget'));
 app.use('/profile', require('./controllers/profile'));
 
 

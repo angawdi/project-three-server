@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
 	console.log("profile route!!")
    db.User.find()
  .then(info => {
-   res.send(info[0].spendingCategory);
+   res.send(info);
   })
   .catch(err => {
     console.log(err);
@@ -16,4 +16,3 @@ router.get('/', (req, res) => {
 
 
 module.exports = router;
-
