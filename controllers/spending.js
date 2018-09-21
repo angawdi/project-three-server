@@ -4,8 +4,8 @@ const db = require('../models');
 
 
 router.post('/post', (req, res) => {
-  console.log('req.body=====', req.body)
-  db.Spending.find({ 'userId': req.body.id,
+  console.log('USER', req.user)
+  db.Spending.find({ 'userId': req.user._id,
     "category": {"$ne": "income"}
   })
   .then(spendings => {
@@ -21,13 +21,16 @@ router.post('/post', (req, res) => {
 
 router.post('/', (req, res) => {
   console.log('adding spending!', req.body)
+  console.log('USER', req.user)
+  let data = req.body.body
+
   db.Spending.create({
 
-    date: req.body.date,
-    amount: req.body.amount,
-    description: req.body.description,
-    category: req.body.category,
-    userId: req.body.userId
+    date: data.date,
+    amount: data.amount,
+    description: data.description,
+    category: data.category,
+    userId: req.user._id
 
   })
   .then(result => {
@@ -39,5 +42,18 @@ router.post('/', (req, res) => {
   });
 });
 
+
+// The "todo" in this callback function represents the document that was found.
+// It allows you to pass a reference back to the client in case they need a reference for some reason.
+// router.delete('/delete', (req, res) => {
+//   console.log('stuffff======>', req.body.id)
+//   db.Spending.findByIdAndRemove('id': req.body.id, (err, spending) => {
+//
+//     if (err) return res.status(500).send(err);
+//
+//     return res.status(200).send(response);
+// });
+//
+// })
 
 module.exports = router;
