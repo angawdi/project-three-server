@@ -29,24 +29,24 @@ router.post('/all', (req, res) => {
   });
 });
 
-// router.post('/all', (req, res) => {
-//
-//   let data = req.body.body
-//   db.Spending.create({
-//     date: data.date,
-//     category: 'income',
-//     amount: data.amount,
-//     description: data.description,
-//     userId: data.userId
-//
-//   })
-//   .then(result => {
-//     res.send('success');
-//   })
-//   .catch(err => {
-//     console.log(err);
-//     res.send('error, check your logs');
-//   });
-// });
+router.post('/all/post', (req, res) => {
+
+  let data = req.body.body
+  db.Spending.create({
+    date: data.date,
+    category: 'income',
+    amount: data.amount,
+    description: data.description,
+    userId: data.userId
+
+  })
+  .then(result => {
+    res.send('success');
+  })
+  .catch(err => {
+    console.log(err);
+    res.send('error, check your logs');
+  });
+});
 
 module.exports = router;
