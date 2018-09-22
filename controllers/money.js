@@ -18,13 +18,9 @@ const db = require('../models');
 // });
 // findById(req.user.id)
 
-router.post('/all/post', (req, res) => {
-  console.log('req.body=====', req.body)
-  db.Spending.find({ 'userId': req.user.id,
-    "category": "income"
-  })
+router.post('/all', (req, res) => {
+  db.Spending.find({ userId: req.user.id, category: 'income' })
   .then(spendings => {
-      console.log(spendings);
       res.send(spendings);
   })
   .catch(err => {
@@ -33,27 +29,24 @@ router.post('/all/post', (req, res) => {
   });
 });
 
-
-
-router.post('/all', (req, res) => {
-  console.log('adding spending!', req.body)
-  console.log('USER', req.user)
-
-  db.Spending.create({
-    date: req.body.date,
-    category: 'income',
-    amount: req.body.amount,
-    description: req.body.description,
-    userId: req.body.userId
-
-  })
-  .then(result => {
-    res.send('success');
-  })
-  .catch(err => {
-    console.log(err);
-    res.send('error, check your logs');
-  });
-});
+// router.post('/all', (req, res) => {
+//
+//   let data = req.body.body
+//   db.Spending.create({
+//     date: data.date,
+//     category: 'income',
+//     amount: data.amount,
+//     description: data.description,
+//     userId: data.userId
+//
+//   })
+//   .then(result => {
+//     res.send('success');
+//   })
+//   .catch(err => {
+//     console.log(err);
+//     res.send('error, check your logs');
+//   });
+// });
 
 module.exports = router;
