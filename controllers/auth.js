@@ -79,6 +79,7 @@ router.post('/me/from/token', function(req, res) {
     console.log(err);
     res.send({ user: null, error: 'server error' });
   });
+  // res.send({ user: req.user });
 });
 
 module.exports = router;

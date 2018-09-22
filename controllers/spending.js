@@ -4,8 +4,8 @@ const db = require('../models');
 
 
 router.post('/post', (req, res) => {
-  console.log('USER', req.user)
-  db.Spending.find({ 'userId': req.user._id,
+
+  db.Spending.find({ 'userId': req.user.id,
     "category": {"$ne": "income"}
   })
   .then(spendings => {
@@ -20,8 +20,7 @@ router.post('/post', (req, res) => {
 
 
 router.post('/', (req, res) => {
-  console.log('adding spending!', req.body)
-  console.log('USER', req.user)
+
   let data = req.body.body
 
   db.Spending.create({
@@ -30,7 +29,7 @@ router.post('/', (req, res) => {
     amount: data.amount,
     description: data.description,
     category: data.category,
-    userId: req.user._id
+    userId: req.user.id
 
   })
   .then(result => {
