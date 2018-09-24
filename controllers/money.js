@@ -49,4 +49,17 @@ router.post('/all/post', (req, res) => {
   });
 });
 
+router.post('/delete', (req, res) => {
+  console.log("backend", req.body.body)
+  db.Spending.findByIdAndDelete(req.body.body)
+  .then(result => {
+      res.send('success');
+  })
+  .catch(err => {
+    console.log(err);
+    res.send('err');
+  });
+});
+
+
 module.exports = router;

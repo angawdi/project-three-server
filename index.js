@@ -43,7 +43,7 @@ app.use('/auth', expressJWT({
   ]
 }), require('./controllers/auth'));
 
-app.use('/users', require('./controllers/users'));
+// app.use('/users', require('./controllers/users'));
 
 app.use('/spending', expressJWT({
   secret: process.env.JWT_SECRET,
@@ -60,7 +60,7 @@ app.use('/budget', expressJWT({
   getToken: fromRequest
 }), require('./controllers/budget'));
 
-app.use('/profile', require('./controllers/profile'));
+// app.use('/profile', require('./controllers/profile'));
 
 
 
